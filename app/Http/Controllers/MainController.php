@@ -27,4 +27,10 @@ class MainController extends Controller
 
         return view('pages.movie.home', compact('movies'));
     }
+
+    // Create Movie Route
+    public function movieCreate()
+    {
+        return view('pages.movie.create');
+    }
 }

@@ -23,3 +23,7 @@ Route::get('/', [MainController::class, 'home'])
 // Home Movie Route
 Route::get('/movie', [MainController::class, 'movie'])
     ->name('home.movie');
+
+// Create Movie Route 
+Route::get('/movie/create', [MainController::class, 'movieCreate'])
+    ->name('movie.create');

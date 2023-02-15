@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h1>Update New Movie</h1>
+    <h1>Update Movie</h1>
     <form action="{{ route('movie.update', $movie) }}"method="POST">
         @csrf
         <label for="name">Name</label>
@@ -44,7 +44,7 @@
             <br>            
         @endforeach
         <br>
-        <input type="submit" value="Update New Movie">
+        <input type="submit" value="Update Movie">
     </form>
 </div>
 @endsection

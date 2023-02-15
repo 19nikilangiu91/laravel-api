@@ -91,4 +91,14 @@ class MainController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function movieEdit(Movie $movie)
+    {
+        // Creo $genres all'interno della funzione per crearmi i Generi
+        $genres = Genre::all();
+        // Creo $tags all'interno della funzione per crearmi i Tag
+        $tags = Tag::all();
+
+        return view('pages.movie.edit', compact('movie', 'genres', 'tags'));
+    }
 }

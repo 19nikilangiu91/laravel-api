@@ -32,6 +32,10 @@ Route::get('/movie/create', [MainController::class, 'movieCreate'])
 Route::post('/movie/create', [MainController::class, 'movieStore'])
     ->name('movie.store');
 
+// Edit Movie Route
+Route::get('/movie/edit/{movie}', [MainController::class, 'movieEdit'])
+    ->name('movie.edit');
+
 // Delete Movie Route
 Route::get('/movie/delete/{movie}', [MainController::class, 'movieDelete'])
     ->name('movie.delete');

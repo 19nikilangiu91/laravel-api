@@ -79,4 +79,16 @@ class MainController extends Controller
 
         return redirect()->route('home');
     }
+
+    // Delete Movie Route
+    public function movieDelete(Movie $movie)
+    {
+        // Recupero nel model "Movie" la funzione "tags() e la sincronizzo con un array vuoto"
+        $movie->tags()->sync([]);
+
+        // Cancello l'elemento
+        $movie->delete();
+
+        return redirect()->route('home');
+    }
 }

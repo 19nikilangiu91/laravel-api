@@ -92,6 +92,7 @@ class MainController extends Controller
         return redirect()->route('home');
     }
 
+    // Edit Movie Route
     public function movieEdit(Movie $movie)
     {
         // Creo $genres all'interno della funzione per crearmi i Generi
@@ -100,5 +101,36 @@ class MainController extends Controller
         $tags = Tag::all();
 
         return view('pages.movie.edit', compact('movie', 'genres', 'tags'));
+    }
+
+    // Update Movie Route
+    public function movieUpdate(Request $request, Movie $movie)
+    {
+        // Recupero tutti i dati da movieStore() function
+        $data = $request->validate([
+            'name' => 'required|string|max:64',
+            'year' => 'required|integer',
+            'cashOut' => 'required|integer',
+            // Inserisco il "genre_id"
+            'genre_id' => 'required|integer',
+            // Inserisco il "tags"
+            'tags' => 'required|array',
+        ]);
+
+        // Aggiorniamo il nuovo "Movie"
+        $movie->update($data);
+
+        $genre = Genre::find($data['genre_id']);
+
+        $movie->genre()->associate($genre);
+
+        $movie->save();
+
+        $tags = Tag::find($data['tags']);
+
+        // inseriamo la sync()
+        $movie->tags()->sync($tags);
+
+        return redirect()->route('home');
     }
 }

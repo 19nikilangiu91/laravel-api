@@ -4,7 +4,7 @@
 
 <div class="container">
     <h1>Update New Movie</h1>
-    <form method="POST">
+    <form action="{{ route('movie.update', $movie) }}"method="POST">
         @csrf
         <label for="name">Name</label>
         {{-- Inserisco i "value" per visualizzare i dati --}}
@@ -18,6 +18,7 @@
         {{-- Inserisco i "value" per visualizzare i dati --}}
         <input type="number" name="cashOut" value="{{$movie -> cashOut}}">
         <br>
+        <h3>Genre</h3>
         <select name="genre_id">
             @foreach ($genres as $genre)
             <option value="{{$genre -> id}}" 
@@ -43,7 +44,7 @@
             <br>            
         @endforeach
         <br>
-        <input type="submit" value="Create New Movie">
+        <input type="submit" value="Update New Movie">
     </form>
 </div>
 @endsection

@@ -19,3 +19,7 @@ use App\Http\Controllers\MainController;
 // Home Route
 Route::get('/', [MainController::class, 'home'])
     ->name('home');
+
+// Home Movie Route
+Route::get('/movie', [MainController::class, 'movie'])
+    ->name('home.movie');

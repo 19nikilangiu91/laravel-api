@@ -33,4 +33,13 @@ class MainController extends Controller
     {
         return view('pages.movie.create');
     }
+
+    // Store Movie Route
+    public function movieStore(Request $request)
+    {
+        // Prova di ricezione dati al submit "Create New Movie"
+        $data = $request->all();
+
+        dd($data);
+    }
 }

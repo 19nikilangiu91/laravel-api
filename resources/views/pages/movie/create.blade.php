@@ -19,6 +19,7 @@
         <input type="number" name="cashOut">
         <br>
         {{-- Creo un foreach per stampare il "Genre" e nella value inserisco la chiave primaria --}}
+        <h3>Genre</h3>
         <select name="genre_id">
             @foreach ($genres as $genre)
                 <option value="{{ $genre -> id }}">{{ $genre -> name }}</option>    

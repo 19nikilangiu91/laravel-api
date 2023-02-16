@@ -43,3 +43,12 @@ Route::post('/movie/edit/{movie}', [MainController::class, 'movieUpdate'])
 // Delete Movie Route
 Route::get('/movie/delete/{movie}', [MainController::class, 'movieDelete'])
     ->name('movie.delete');
+
+// Importo il "ApiController
+use App\Http\Controllers\ApiController;
+
+// Test Api Route
+Route::get('/api/v1/test', [ApiController::class, 'test']);
+
+// Movie Api Route
+Route::get('/api/v1/movie/all', [ApiController::class, 'movieAll']);

@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+                // Ricordarmi l'ordine di richiamo dei Seeder (GenreSeeder FK, TagSeeder N a M, MovieSeeder)
             GenreSeeder::class,
             TagSeeder::class,
             MovieSeeder::class,

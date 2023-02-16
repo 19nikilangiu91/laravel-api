@@ -28,8 +28,8 @@
         <h3>Tags</h3>
         {{-- Creo un foreach per stampare i "tag" e nella value inserisco la chiave primaria --}}
         @foreach ($tags as $tag)
-            <input type="checkbox" name="tags[]" value={{ $tag -> id }}>
-            <label for="tags">{{ $tag -> name }}</label>
+            <input type="checkbox" name="tags[]" value="{{ $tag -> id }}" id="{{ $tag -> id}}">
+            <label for="{{ $tag -> id}}">{{ $tag -> name }}</label>
             <br>            
         @endforeach
         <br>

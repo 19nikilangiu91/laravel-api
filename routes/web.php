@@ -51,4 +51,4 @@ use App\Http\Controllers\ApiController;
 Route::get('/api/v1/test', [ApiController::class, 'test']);
 
 // Movie Api Route
-Route::get('/api/v1/movie/all', [ApiController::class, 'movieAll']);
+Route::get('/api/movie/all', [ApiController::class, 'movieAll']);

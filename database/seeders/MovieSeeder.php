@@ -17,23 +17,23 @@ class MovieSeeder extends Seeder
      */
 
 
-    // Dal model "Movie" richiamiamo la "factory" e tramite il foreach richiamiamo ogni "singolo Movie ($p)"
+    // Dal model "Movie" richiamiamo la "factory" e tramite il foreach richiamiamo ogni "singolo Movie ($m)"
     public function run()
     {
-        Movie::factory()->count(100)->make()->each(function ($p) {
+        Movie::factory()->count(100)->make()->each(function ($m) {
 
             // Richiamiamo il model "Genre" in ordine casuale e andiamo a prendere il primo elemento casuale. FK
             $genre = Genre::inRandomOrder()->first();
 
-            // Richiamiamo "$p" alla funzione inversa nel Model "Movie" e associamo una singola "Genre ($genre)"
-            $p->genre()->associate($genre);
+            // Richiamiamo "$m" alla funzione inversa nel Model "Movie" e associamo una singola "Genre ($genre)"
+            $m->genre()->associate($genre);
 
             // Salviamo il nuovo elemento
-            $p->save();
+            $m->save();
 
             // Andiamo a creare un prodotto casuale e andiamo ad associarla nella Tabella Ponte "movie_tag". N a M
             $tags = Tag::inRandomOrder()->limit(rand(1, 5))->get();
-            $p->tags()->attach($tags);
+            $m->tags()->attach($tags);
         });
     }
 }

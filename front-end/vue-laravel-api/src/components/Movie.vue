@@ -10,21 +10,26 @@ export default {
             movies: []
         }
     },
+    methods: {
+        getAllMovies() {
+            const url = 'http://localhost:8000/api/movie/all';
+            axios.get(url)
+                .then(res => {
+
+                    const data = res.data;
+                    const success = data.success;
+                    const movies = data.response;
+
+                    // Richiamo l'array
+                    this.movies = data.movies;
+
+                    console.log(movies);
+                })
+                .catch(err => console.error(err));
+        }
+    },
     mounted() {
-
-        axios.get('http://localhost:8000/api/movie/all')
-            .then(res => {
-
-                const data = res.data;
-                const success = data.success;
-                const movies = data.movies;
-
-                // Richiamo l'array
-                this.movies = data.movies;
-
-                console.log(movies);
-            })
-            .catch(err => console.error(err));
+        this.getAllMovies();
     }
 }
 </script>

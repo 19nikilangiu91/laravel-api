@@ -24,7 +24,8 @@ class ApiController extends Controller
 
         return response()->json([
             'success' => true,
-            'response' => $movies
+            // Cambio il nome dell'array Json
+            'movies' => $movies
         ]);
     }
 }

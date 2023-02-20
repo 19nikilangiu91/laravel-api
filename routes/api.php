@@ -25,5 +25,8 @@ use App\Http\Controllers\ApiController;
 // Test Api Route
 Route::get('/v1/test', [ApiController::class, 'test']);
 
-// All Movie Route
+// All Api Movie Route
 Route::get('/v1/movie/all', [ApiController::class, 'getAllMovies']);
+
+// Create Api Movie Store
+Route::post('/v1/movie/store', [ApiController::class, 'movieStore']);

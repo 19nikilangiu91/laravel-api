@@ -59,7 +59,12 @@ export default {
             e.preventDefault();
 
             const new_movie = this.new_movie;
-            const actualApi = API + 'movie/store';
+            // Creo la condizione se il Movie e "d'aggiornare" o se fosse da creare lo inserisco nello "store"
+            const actualApi = API + 'movie/' + (
+                new_movie.id
+                    ? 'update/' + new_movie.id
+                    : 'store'
+            );
 
             console.log(new_movie);
             console.log(actualApi);
@@ -85,6 +90,26 @@ export default {
             this.new_movie = { ...Empty_New_Movie };
             this.state.movieForm = false;
         },
+        editMovie(movie) {
+            console.log('movie', movie);
+            console.log('new_movie', this.new_movie);
+
+            // Cliccando il tasto "edit" recupero i dati
+            this.new_movie = { ...movie };
+
+            // e il form passerà da una condizione "false" a "true" e si aprirà
+            this.state.movieForm = true;
+
+            // Dichiaro i tags_id
+            this.new_movie.tags_id = [];
+
+            // Tramite un ciclo for recupero le caselle selezionate
+            for (let x = 0; x < movie.tags.length; x++) {
+
+                const tag = movie.tags[x];
+                this.new_movie.tags_id.push(tag.id);
+            }
+        }
     },
     mounted() {
         this.getAllMoviesData();
@@ -118,7 +143,10 @@ export default {
                 <br>
             </div>
             <button @click="closeForm">Cancel</button>
-            <input @click="submitMovie" type="submit" value="Create New Movie">
+            <!-- Creo la condizione per variare il bottone da "Update Movie" ad "Create New Movie" -->
+            <input type="submit" @click="submitMovie" :value="'id' in new_movie
+                ? 'Update Movie: ' + new_movie.id
+                : 'Create New Movie'">
         </form>
         <div v-else>
             <button @click="state.movieForm = true">Create a New Movie</button>
@@ -131,6 +159,9 @@ export default {
                         <li v-for="tag in movie.tags" :key="tag.id">
                             {{ tag.name }}
                         </li>
+                        <br>
+                        <br>
+                        <button @click="editMovie(movie)">EDIT</button>
                     </ul>
                 </li>
             </ul>

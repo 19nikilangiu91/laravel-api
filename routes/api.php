@@ -30,3 +30,6 @@ Route::get('/v1/movie/all', [ApiController::class, 'getAllMovies']);
 
 // Create Api Movie Store
 Route::post('/v1/movie/store', [ApiController::class, 'movieStore']);
+
+// Update Api Movie
+Route::post('/v1/movie/update/{movie}', [ApiController::class, 'movieUpdate']);

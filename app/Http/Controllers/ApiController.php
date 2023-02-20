@@ -49,7 +49,8 @@ class ApiController extends Controller
             'year' => 'required|integer|min:0',
             'cashOut' => 'required|integer|min:0',
             'genre_id' => 'required|integer|min:1',
-            'tags_id' => 'required|array'
+            // Qualora volessi creare o editare un Movie Senza "Tags"
+            'tags_id' => 'nullable|array'
         ]);
 
         $genre = Genre::find($data['genre_id']);
@@ -58,8 +59,12 @@ class ApiController extends Controller
         $movie->genre()->associate($genre);
         $movie->save();
 
-        $tags = Tag::find($data['tags_id']);
-        $movie->tags()->sync($tags);
+        // Creo la condizione per i "Tags"
+        if (array_key_exists('tags_id', $data)) {
+
+            $tags = Tag::find($data['tags_id']);
+            $movie->tags()->sync($tags);
+        }
 
         return response()->json([
             'success' => true,
@@ -76,7 +81,8 @@ class ApiController extends Controller
             'year' => 'required|integer|min:0',
             'cashOut' => 'required|integer|min:0',
             'genre_id' => 'required|integer|min:1',
-            'tags_id' => 'required|array'
+            // Qualora volessi creare o editare un Movie Senza "Tags"
+            'tags_id' => 'nullable|array'
         ]);
 
         $genre = Genre::find($data['genre_id']);
@@ -84,8 +90,12 @@ class ApiController extends Controller
         $movie->genre()->associate($genre);
         $movie->save();
 
-        $tags = Tag::find($data['tags_id']);
-        $movie->tags()->sync($tags);
+        // Creo la condizione per i "Tags"
+        if (array_key_exists('tags_id', $data)) {
+
+            $tags = Tag::find($data['tags_id']);
+            $movie->tags()->sync($tags);
+        }
 
         return response()->json([
             'success' => true,

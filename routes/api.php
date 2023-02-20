@@ -33,3 +33,6 @@ Route::post('/v1/movie/store', [ApiController::class, 'movieStore']);
 
 // Update Api Movie
 Route::post('/v1/movie/update/{movie}', [ApiController::class, 'movieUpdate']);
+
+// Delete Api Movie
+Route::delete('/v1/movie/delete/{movie}', [ApiController::class, 'movieDelete']);

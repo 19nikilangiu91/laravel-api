@@ -109,7 +109,21 @@ export default {
                 const tag = movie.tags[x];
                 this.new_movie.tags_id.push(tag.id);
             }
-        }
+        },
+        deleteMovie(movie) {
+
+            axios.delete(API + 'movie/delete/' + movie.id)
+                .then(res => {
+
+                    const data = res.data;
+                    const success = data.success;
+
+                    // Se va a buon fine il "movie" verrà cancellato
+                    if (success)
+                        this.getAllMoviesData();
+                })
+                .catch(err => console.log);
+        },
     },
     mounted() {
         this.getAllMoviesData();
@@ -161,7 +175,8 @@ export default {
                         </li>
                         <br>
                         <br>
-                        <button @click="editMovie(movie)">EDIT</button>
+                        <button @click="editMovie(movie)">Edit</button>
+                        <button @click="deleteMovie(movie)">Delete</button>
                     </ul>
                 </li>
             </ul>

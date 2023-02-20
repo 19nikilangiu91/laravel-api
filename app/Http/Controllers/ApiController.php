@@ -102,4 +102,16 @@ class ApiController extends Controller
             'response' => $movie
         ]);
     }
+
+    // Delete Api Movie
+    public function movieDelete(Movie $movie)
+    {
+
+        $movie->tags()->sync([]);
+        $movie->delete();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
 }

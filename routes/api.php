@@ -23,7 +23,7 @@ use App\Http\Controllers\ApiController;
 // });
 
 // Test Api Route
-Route::get('/api/v1/test', [ApiController::class, 'test']);
+Route::get('/v1/test', [ApiController::class, 'test']);
 
 // All Movie Route
-Route::get('/v1/movie/all', [ApiController::class, 'getMovieWTagWGenre']);
+Route::get('/v1/movie/all', [ApiController::class, 'getAllMovies']);

@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-// Importo il model "Movie"
+// Importo il model "Movie", "Genre", "Tag"
 use App\Models\Movie;
+use App\Models\Genre;
+use App\Models\Tag;
+
 
 class ApiController extends Controller
 {
@@ -17,15 +20,21 @@ class ApiController extends Controller
         ]);
     }
 
-    // Movie Api Route
-    public function movieAll()
+    // All Movie Route
+    public function getAllMovies()
     {
-        $movies = Movie::all();
+
+        $movies = Movie::with('tags')->get();
+        $genres = Genre::all();
+        $tags = Tag::all();
 
         return response()->json([
             'success' => true,
-            // Cambio il nome dell'array Json
-            'movies' => $movies
+            'response' => [
+                'movies' => $movies,
+                'genres' => $genres,
+                'tags' => $tags,
+            ]
         ]);
     }
 }

@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// Importo il Facades "Mail"
+use Illuminate\Support\Facades\Mail;
+
 // Importo il model "Movie", "Genre", "Tag"
 use App\Models\Movie;
 use App\Models\Genre;
 use App\Models\Tag;
+
+// Importo il Mail "NewMovie"
+use App\Mail\NewMovie;
 
 
 class ApiController extends Controller
@@ -29,6 +35,10 @@ class ApiController extends Controller
             ->get();
         $genres = Genre::all();
         $tags = Tag::all();
+
+        // Test Mail Received
+        // Mail::to('admin@worstcinemaever.com')
+        //     ->send(new NewMovie());
 
         return response()->json([
             'success' => true,
@@ -65,6 +75,10 @@ class ApiController extends Controller
             $tags = Tag::find($data['tags_id']);
             $movie->tags()->sync($tags);
         }
+
+        // 1) Richiamiamo la "Mail" spediamo a "admin@worstcinemaever.com" un "NewMovie"
+        Mail::to('admin@worstcinemaever.com')
+            ->send(new NewMovie($movie));
 
         return response()->json([
             'success' => true,
